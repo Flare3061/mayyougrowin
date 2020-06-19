@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>May you grow in ...</title>
+</head>
+
+<body>
+	<h1>May you <span id = "result0">?</span><span id = "result1">?</span><span id = "result2">?</span><span id = "result3">?</span> in ...</h1>
+	<p>0~4095までの整数を入力してください</p>
+	<input type = "number" value="0" min="0" max="4095" required id = "answer" onkeydown="keydown_enter();">
+	<button type="button" onclick="check();" id = "submit">GO!</button>
+	<script>
+		var resultset = ["?", "?", "r", "w", "?", "?", "g", "o"];
+		function keydown_enter() {
+			if(window.event.keyCode == 13) {
+				document.getElementById("submit").click();
+			}
+			else if (window.event.keyCode == 69 || window.event.keyCode == 107  || window.event.keyCode == 109 || window.event.keyCode == 110 || window.event.keyCode == 187 || window.event.keyCode == 189 || window.event.keyCode == 190) {
+				event.preventDefault()
+			}
+		}
+		function check(){
+			var ans = document.getElementById('answer').value;
+			ans = Number(ans);
+			if(Number.isInteger(ans) == false){
+				alert("整数を入力してください");
+			}
+			else if(ans < 0 || ans > 4095){
+				alert("0~4095までの整数を入力してください");
+			}
+			else{
+				ans8 = ans.toString(8);
+				ans80 = ((ans8 / 1000) | 0);
+				ans81 = (((ans8 / 100) | 0) % 10);
+				ans82 = (((ans8 / 10) | 0) % 10);
+				ans83 = (ans8 % 10);
+				document.getElementById("result0").textContent=resultset[ans80];
+				document.getElementById("result1").textContent=resultset[ans81];
+				document.getElementById("result2").textContent=resultset[ans82];
+				document.getElementById("result3").textContent=resultset[ans83];
+				if (ans80 == 6){
+					document.getElementById("result0").style.color = "red";
+				}
+				else{
+					document.getElementById("result0").style.color = "black";
+				}
+				if (ans81 == 2){
+					document.getElementById("result1").style.color = "red";
+				}
+				else{
+					document.getElementById("result1").style.color = "black";
+				}
+				if (ans82 == 7){
+					document.getElementById("result2").style.color = "red";
+				}
+				else{
+					document.getElementById("result2").style.color = "black";
+				}
+				if (ans83 == 3){
+					document.getElementById("result3").style.color = "red";
+				}
+				else{
+					document.getElementById("result3").style.color = "black";
+				}
+				if (ans8 == 6273){
+					alert("正解です、おめでとうございます！")
+					setTimeout("openclear()", 500);
+				}
+				if(ans == 619){
+					alert("6月19日はひなさんの誕生日！でもそれが正解じゃないです……。")
+				}
+				if(ans == 321){
+					alert("確かに「蜜井」ひなですけど正解じゃないです……。")
+				}
+			}
+		}
+		function openclear(){
+			open( "https://mayyougrowingrace.wordpress.com/may-you-grow-in-grace/", "_blank" ) ;
+		}
+	</script>
+</body>
+</html>
